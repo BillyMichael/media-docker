@@ -121,7 +121,7 @@ services:
       - ./requests/config/Ombi.sqlite:/config/Ombi.sqlite
 
   organizr:
-    image: "lsiocommunity/organizr"
+    build: ./organizr
     container_name: organizr
     ports:
       - 80:80
@@ -132,10 +132,10 @@ services:
       - PGID=1000
       - PUID=1000
     volumes:
-      - ./organizr/config:/config
+      - ./organizr/config/default.template:/config/default.template
     environment:
       - NGINX_HOST=<HOSTNAME_HERE>
-    command: /bin/bash -c "envsubst '$${NGINX_HOST}' < /config/default.template > /config/default && nginx -g 'daemon off;'"
+    command: /bin/bash -c "envsubst '$${NGINX_HOST}' < /config/default.template > /config/default && nginx -g 'pid /tmp/nginx.pid; daemon off;'"
 
 networks:
   media:
