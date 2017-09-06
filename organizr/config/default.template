@@ -1,0 +1,78 @@
+server {
+	listen 80;
+	server_name ${NGINX_HOST};
+	root /config/www/Dashboard;
+	index index.html index.htm index.php;
+
+	client_max_body_size 0;
+
+	location / {
+		try_files $uri $uri/ /index.html /index.php?$args =404;
+	}
+	location ~ \.php$ {
+		fastcgi_split_path_info ^(.+\.php)(/.+)$;
+		# With php5-cgi alone:
+		fastcgi_pass 127.0.0.1:9000;
+		# With php5-fpm:
+		#fastcgi_pass unix:/var/run/php5-fpm.sock;
+		fastcgi_index index.php;
+		include /etc/nginx/fastcgi_params;
+
+	}
+}
+
+server {
+	listen 80;
+	server_name plex.${NGINX_HOST};
+	location / {
+		proxy_pass http://plex:32400/;
+	}
+}
+
+server {
+	listen 80;
+	server_name sonarr.${NGINX_HOST};
+	location / {
+		proxy_pass http://sonarr:8989/;
+	}
+}
+
+server {
+	listen 80;
+	server_name radarr.${NGINX_HOST};
+	location / {
+		proxy_pass http://radarr:7878/;
+	}
+}
+
+server {
+	listen 80;
+	server_name deluge.${NGINX_HOST};
+	location / {
+		proxy_pass http://deluge:8112/;
+	}
+}
+
+server {
+	listen 80;
+	server_name jackett.${NGINX_HOST};
+	location / {
+		proxy_pass http://jackett:9117/;
+	}
+}
+
+server {
+	listen 80;
+	server_name plexpy.${NGINX_HOST};
+	location / {
+		proxy_pass http://plexpy:8181/;
+	}
+}
+
+server {
+	listen 80;
+	server_name requests.${NGINX_HOST};
+	location / {
+		proxy_pass http://requests:3579/;
+	}
+}

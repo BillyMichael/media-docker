@@ -1,7 +1,6 @@
 .DS_Store
 
 #Deluge
-
 deluge/*
 !deluge/config
 deluge/config/*
@@ -11,10 +10,14 @@ deluge/config/*
 /plex
 
 #Radarr
+radarr/*
+!radarr/config
 radarr/config/*
-!radarr/config/nzbdrobe.db
+!radarr/config/nzbdrone.db
 
 #Sonarr
+sonarr/*
+!sonarr/config
 sonarr/config/*
 !sonarr/config/nzbdrobe.db
 
@@ -22,13 +25,19 @@ sonarr/config/*
 jackett/config
 
 #Plexpy
+plexpy/*
+!plexpy/config
 plexpy/config/*
 !plexpy/config/config.ini
 
 #Ombi
-requests/config
+requests/*
+!requests/config
+requests/config/*
 !requests/config/Ombi.sqlite
 
 #Organizr
-organizr/config
+organizr/*
+!organizr/config
+organizr/config/*
 !organizr/config/default.template
