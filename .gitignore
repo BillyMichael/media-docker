@@ -1,18 +1,21 @@
 .DS_Store
 
 #Deluge
-/deluge/config
-!/deluge/config/core.conf
+
+deluge/*
+!deluge/config
+deluge/config/*
+!deluge/config/core.conf
 
 #Plex
 /plex
 
 #Radarr
-radarr/config
+radarr/config/*
 !radarr/config/nzbdrobe.db
 
 #Sonarr
-sonarr/config
+sonarr/config/*
 !sonarr/config/nzbdrobe.db
 
 #Jackett
